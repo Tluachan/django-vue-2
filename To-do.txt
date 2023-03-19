@@ -1,0 +1,119 @@
+- Install and set up django
+
+install django
+install pillow
+conda install -c conda-forge djangorestframework
+conda install -c conda-forge django-cors-headers
+conda install pip
+pip install djoser
+conda install -c anaconda stripe
+pip install pandas
+conda install -c anaconda chardet
+
+- Create django project
+django-admin startproject djackets_django
+- Edit settings.py and urls.py
+- Migrate and create superuser
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+- install node.js
+conda install -c conda-forge nodejs
+- install vue
+npm install -g @vue/cli
+if does not work due to permission, do
+
+**run this again if vue command not found
+npm config set prefix '~/.npm-global'
+export PATH=~/.npm-global/bin:$PATH
+and install again
+- make vue project
+vue create djackets_vue
+- install
+npm install axios
+npm install bulma
+- include font awesome
+Add to index.html below title    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+- set up the base template
+Set in app.vue
+then set the homeview.vue
+the link doesn't seem to have any link with django with the meantime
+- create django app and models for product
+python manage.py startapp product
+access models.py
+**To help with front end + also check the product model
+need slug of Category name
+    def get_absolute_url(self):
+        return f'/{self.slug}/':
+
+**33:08 set urls for front end
+these are added
+from django.conf import settings
+from django.conf.urls.static import static
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+- create serializer : turn database to json to use in front end
+
+- create simple front page 40 minutes
+42:11 is useful to set up vue code to match with django
+
+- axios is used to get data from django to vue
+
+<script>
+import axios from 'axios'
+
+export default {
+  name: 'HomeView',
+  data(){
+    return{
+      latestProducts: []
+    }
+  },
+  components: {
+  },
+  mounted() {
+    this.getLatestProducts()
+  },
+  methods: {
+    getLatestProducts(){
+      axios
+        .get('/api/v1/latest-products/')
+        .then(response => {
+          this.latestProducts = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }   
+}
+</script>
+
+- after that to continue set up , move to main.js and set up axios
+currently at minutes 45
+
+- View a product
+- Create in django
+- Create vue page
+- set up vuex / state
+- Make it possible to add cart : not really need to use
+- Implement a loading bar
+this is adding async and await to axios method : also not needed (also css in app)
+- set document title *need
+put document title in mount for each view
+- Make it possible to view Category
+add new view, add serializer, add urls
+add new vue page in views, make axios method, update router
+- Convert the product to a component (product box)
+- add search
+views.py add search method, q also help with the search
+edit in app
+make search.vue in views, put methods, add in home
+update router
+- view cart not needed -> skip
+- skip change content of cart
+- make it possible to sign up
+    
+    NOTE
+    - Check model foreign key to user model
+    - serializer : add userserializer model

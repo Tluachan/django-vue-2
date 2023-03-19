@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@vue/cli": "^5.0.8",
+    "conda": "^0.0.1-a17"
+  }
+}

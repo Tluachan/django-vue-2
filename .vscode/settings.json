@@ -1,0 +1,15 @@
+{
+    "eslint.timeBudget.onValidation": {
+
+        "warn": 4000,
+        "error": 8000
+    },
+    "eslint.trace.server": "off",
+    "eslint.validate": [
+        
+        "javascript",
+        "javascriptreact",
+        "vue"
+    
+    ]
+}
